@@ -83,6 +83,105 @@ valentineWeekBtn.addEventListener('click', () => {
     showPage(valentineWeekPage);
 });
 
+// Image Modal functionality
+const modal = document.getElementById('image-modal');
+const modalImg = document.getElementById('modal-image');
+const captionText = document.getElementById('caption');
+const closeModal = document.querySelector('.close-modal');
+
+// Rose Modal functionality
+const roseModal = document.getElementById('rose-modal');
+const closeRose = document.querySelector('.close-rose');
+
+// Mapping of day names to actual file names
+const imageMap = {
+    'rose-day': 'rose day.jpg.jpeg',
+    'propose-day': 'propose day.JPG.jpeg',
+    'chocolate-day': 'chocolate day.jpg.jpeg',
+    'teddy-day': 'teddy day.jpg.jpeg',
+    'promise-day': 'promise day.jpg.jpeg',
+    'hug-day': 'hug day.PNG',
+    'kiss-day': 'kiss day.jpg.jpeg',
+    'valentine-day': 'forever.PNG'  // Using forever.PNG for Valentine's Day
+};
+
+// Add click event to all day cards
+document.querySelectorAll('.day-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const dayName = this.getAttribute('data-day');
+        const dayTitle = this.querySelector('h3').textContent;
+        
+        // Special handling for Valentine's Day
+        if (dayName === 'valentine-day') {
+            roseModal.style.display = 'block';
+            return;
+        }
+        
+        // Get the correct file name from mapping
+        const fileName = imageMap[dayName];
+        
+        if (fileName) {
+            // Set image source
+            modalImg.src = `photos/${fileName}`;
+            modalImg.alt = dayTitle;
+            
+            // Show modal immediately
+            modal.style.display = 'block';
+            captionText.innerHTML = dayTitle + ' 💕';
+            
+            // Error handling - if image fails to load
+            modalImg.onerror = function() {
+                console.error('Failed to load image:', `photos/${fileName}`);
+                // Try with (1) version
+                const fileName2 = fileName.replace('.jpeg', ' (1).jpeg').replace('.PNG', ' (1).PNG');
+                modalImg.src = `photos/${fileName2}`;
+                modalImg.onerror = function() {
+                    modal.style.display = 'none';
+                    alert('Image not found! Make sure the photo exists in the photos folder.');
+                };
+            };
+        } else {
+            alert('No image found for this day!');
+        }
+    });
+});
+
+// Close modal when clicking X
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Close rose modal when clicking X
+closeRose.addEventListener('click', () => {
+    roseModal.style.display = 'none';
+});
+
+// Close modal when clicking outside the image
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Close rose modal when clicking outside
+roseModal.addEventListener('click', (e) => {
+    if (e.target === roseModal) {
+        roseModal.style.display = 'none';
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (modal.style.display === 'block') {
+            modal.style.display = 'none';
+        }
+        if (roseModal.style.display === 'block') {
+            roseModal.style.display = 'none';
+        }
+    }
+});
+
 // Function to show a specific page
 function showPage(pageToShow) {
     // Hide all pages
@@ -109,6 +208,16 @@ window.addEventListener('load', () => {
         noBtn.style.left = '0';
         noBtn.style.top = '0';
     }, 100);
+    
+    // Fix forever image path on load
+    const foreverImg = document.getElementById('forever-image');
+    if (foreverImg) {
+        foreverImg.onerror = function() {
+            console.log('Trying alternate path for forever image');
+            this.onerror = null;
+            this.style.display = 'block';
+        };
+    }
 });
 
 // Add particle effect on Yes button click

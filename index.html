@@ -44,6 +44,7 @@
     <div id="love-page-1" class="page">
         <div class="content">
             <h1 class="love-message">I love you today 🌹</h1>
+            <img id="today-image" src="photos/today.jpg.jpeg" alt="Today" class="love-image" onerror="this.src='photos/today.jpg (1).jpeg'">
             <button id="next-btn-1" class="btn next-btn">Next 💕</button>
         </div>
     </div>
@@ -52,6 +53,7 @@
     <div id="love-page-2" class="page">
         <div class="content">
             <h1 class="love-message">I will love you tomorrow 🌙</h1>
+            <img id="tomorrow-image" src="photos/tomorrow.PNG" alt="Tomorrow" class="love-image" onerror="this.src='photos/tomorrow (1).PNG'">
             <button id="next-btn-2" class="btn next-btn">Next 💕</button>
         </div>
     </div>
@@ -60,6 +62,7 @@
     <div id="love-page-3" class="page">
         <div class="content">
             <h1 class="love-message">I will love you forever ♾️</h1>
+            <img id="forever-image" src="photos/forever (1) (1).PNG" alt="Forever" class="love-image">
             <div class="final-hearts">
                 <span class="big-heart">❤️</span>
                 <span class="big-heart">💕</span>
@@ -72,50 +75,51 @@
     <div id="valentine-week-page" class="page">
         <div class="content valentine-week-content">
             <h1 class="main-title">Our Valentine's Week 💞</h1>
+            <p class="subtitle">Click on any day to see our special moment 📸</p>
             <div class="week-days">
-                <div class="day-card">
+                <div class="day-card" data-day="rose-day">
                     <div class="day-emoji">🌹</div>
                     <h3>Rose Day</h3>
                     <p>Feb 7</p>
                     <p class="day-message">A rose for my beautiful valentine</p>
                 </div>
-                <div class="day-card">
+                <div class="day-card" data-day="propose-day">
                     <div class="day-emoji">💍</div>
                     <h3>Propose Day</h3>
                     <p>Feb 8</p>
                     <p class="day-message">The day I asked you to be mine</p>
                 </div>
-                <div class="day-card">
+                <div class="day-card" data-day="chocolate-day">
                     <div class="day-emoji">🍫</div>
                     <h3>Chocolate Day</h3>
                     <p>Feb 9</p>
                     <p class="day-message">Sweet treats for my sweeter love</p>
                 </div>
-                <div class="day-card">
+                <div class="day-card" data-day="teddy-day">
                     <div class="day-emoji">🧸</div>
                     <h3>Teddy Day</h3>
                     <p>Feb 10</p>
                     <p class="day-message">A cuddle buddy when I'm not around</p>
                 </div>
-                <div class="day-card">
+                <div class="day-card" data-day="promise-day">
                     <div class="day-emoji">🤝</div>
                     <h3>Promise Day</h3>
                     <p>Feb 11</p>
                     <p class="day-message">I promise to love you always</p>
                 </div>
-                <div class="day-card">
+                <div class="day-card" data-day="hug-day">
                     <div class="day-emoji">🤗</div>
                     <h3>Hug Day</h3>
                     <p>Feb 12</p>
                     <p class="day-message">Wrapped in your warmth forever</p>
                 </div>
-                <div class="day-card">
+                <div class="day-card" data-day="kiss-day">
                     <div class="day-emoji">💋</div>
                     <h3>Kiss Day</h3>
                     <p>Feb 13</p>
                     <p class="day-message">Sealed with a thousand kisses</p>
                 </div>
-                <div class="day-card special-day">
+                <div class="day-card special-day" data-day="valentine-day">
                     <div class="day-emoji">❤️</div>
                     <h3>Valentine's Day</h3>
                     <p>Feb 14</p>
@@ -124,6 +128,37 @@
             </div>        </div>
     </div>
 
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modal-image">
+        <div id="caption"></div>
+    </div>
+
+    <!-- Virtual Rose Modal for Valentine's Day -->
+    <div id="rose-modal" class="modal">
+        <span class="close-rose">&times;</span>
+        <div class="rose-content">
+            <div class="virtual-rose">
+                <div class="stem"></div>
+                <div class="leaf leaf-left"></div>
+                <div class="leaf leaf-right"></div>
+                <div class="rose-bloom">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+            </div>
+            <h1 class="rose-message">I Love You ❤️</h1>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+
 </body>
 </html>
